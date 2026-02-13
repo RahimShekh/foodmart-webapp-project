@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { recipeContext } from '../context/RecipeContext';
+import RecipeCard from '../components/RecipeCard';
 
 function Receipe() {
   const {data} = useContext(recipeContext);
+
   const renderRecipes = data.map((recipe)=>(
-    <div key={recipe.id}>
-      <h1>{recipe.title}</h1>
-    </div>
+      <RecipeCard key={recipe.id} recipe={recipe} />
   ))
   return (
-    <div>
-      {renderRecipes}
+    <div className='flex flex-wrap gap-10'>
+      {data.length > 0 ? renderRecipes : "No Recipes found"}
     </div>
   )
 }
